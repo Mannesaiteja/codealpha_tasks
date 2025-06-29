@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sai Teja Manne Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Home Section -->
+  <section id="home">
+    <h1>Hi, I'm Sai Teja</h1>
+    <p>Sophomore CSE AI-ML Student passionate about coding and content creation</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm currently pursuing B.Tech in CSE (AI-ML) from Aurora Deemed to be University. I enjoy solving problems and creating multimedia content.</p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <ul>
+      <li>Python, Java, C, C++</li>
+      <li>HTML, MySQL (Basic)</li>
+      <li>Pandas, Photography, Video Editing</li>
+    </ul>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Electricity Bill Calculator (Python):</strong> Calculates bills based on TSEB tariffs.</li>
+      <li><strong>Brick Breaker Game (Java):</strong> Arcade-style Java game using Swing and AWT.</li>
+      <li><strong>Hospital Management System:</strong> Patient and doctor management in C++/Python.</li>
+      <li><strong>Bank Management System (SQL):</strong> Ongoing project using SQL for transactions.</li>
+    </ul>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <p>Intern at Cognorize (May–July 2024): Worked with C & C++, focused on debugging and testing.</p>
+  </section>
+
+  <!-- Resume Section -->
+  <section id="resume">
+    <h2>Resume</h2>
+    <a href="MANNE_SAI_TEJA_RESUME.pdf" download>Download My Resume (PDF)</a>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:tejayadav0711@gmail.com">tejayadav0711@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/sai-yadav-177736304" target="_blank">View Profile</a></p>
+    <p>Location: Hyderabad, India</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
