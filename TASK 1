@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Delights - Bakery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #ff6b6b;
+            margin-right: 10px;
+            border-radius: 5px;
+            /* Replace background with actual logo image */
+            background-image: url('images/logo.png'); /* Add your logo image here */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Add background image here */
+            background-image: 
+              
+                url('images/hero-background.jpg'); /* Add your hero background image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffd700" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1.5" fill="%23ff6b6b" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/></circle><circle cx="60" cy="70" r="1" fill="%2300ff88" opacity="0.7"><animate attributeName="opacity" values="0.7;1;0.7" dur="1.8s" repeatCount="indefinite"/></circle><polygon points="50,10 52,16 58,16 53,20 55,26 50,22 45,26 47,20 42,16 48,16" fill="%23ffd700" opacity="0.8"><animate attributeName="opacity" values="0.8;1;0.8" dur="2.5s" repeatCount="indefinite"/></polygon></svg>') no-repeat center;
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 2rem;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Placeholder for missing images */
+        .gallery-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 2rem;
+            background: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .contact-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .cta-section h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .cta-section p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                Sweet Delights
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Sweet Delights</h1>
+            <h2>Bakery</h2>
+            <p>Where Every Cake Tells a Sweet Story</p>
+            <a href="#contact" class="cta-button">✨ Order Your Dream Cake</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Sweet Services</h2>
+            <p class="section-subtitle">From custom cakes to baking classes, we offer everything you need to make your celebrations extra special</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎂</div>
+                    <h3>Custom Birthday Cakes</h3>
+                    <p>Make your special day unforgettable with our personalized birthday cake designed just for you</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">💒</div>
+                    <h3>Wedding Cakes</h3>
+                    <p>Elegant and stunning wedding cakes that will be the centerpiece of your perfect day</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🧁</div>
+                    <h3>Cupcakes & Treats</h3>
+                    <p>Delicious cupcakes and sweet treats perfect for any occasion or just because you deserve it</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚚</div>
+                    <h3>Home Delivery</h3>
+                    <p>Fast and fresh delivery service, we bring our sweet creations right to your doorstep</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">👩‍🍳</div>
+                    <h3>Baking Classes</h3>
+                    <p>Learn the art of baking from our expert chefs in fun and interactive classes</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">🎉</div>
+                    <h3>Event Catering</h3>
+                    <p>Complete dessert catering solutions for parties, corporate events, and celebrations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Sweet Creations</h2>
+            <p class="section-subtitle">Discover our extensive collection of beautiful cakes, each one a masterpiece of flavor and artistry</p>
+            
+            <div class="gallery-grid">
+                <!-- Add your images here - replace src with your actual image paths -->
+                <div class="gallery-item">
+                    <img src="images/red-velvet-cake.jpg" alt="Red Velvet Cake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍰 Red Velvet Cake</div>'">
+                    <div class="gallery-overlay">Red Velvet Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/berry-pancakes.jpg" alt="Berry Pancakes" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥞 Berry Pancakes</div>'">
+                    <div class="gallery-overlay">Berry Pancakes</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/vanilla-cupcake.jpg" alt="Vanilla Cupcake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🧁 Vanilla Cupcake</div>'">
+                    <div class="gallery-overlay">Vanilla Cupcake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/fruit-tart.jpg" alt="Fruit Tart" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍓 Fruit Tart</div>'">
+                    <div class="gallery-overlay">Fruit Tart</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/berries-cream.jpg" alt="Berries & Cream" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥛 Berries & Cream</div>'">
+                    <div class="gallery-overlay">Berries & Cream</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/chocolate-lava.jpg" alt="Chocolate Lava Cake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍫 Chocolate Lava</div>'">
+                    <div class="gallery-overlay">Chocolate Lava Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/caramel-pie.jpg" alt="Caramel Pie" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥧 Caramel Pie</div>'">
+                    <div class="gallery-overlay">Caramel Pie</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/chocolate-cake.jpg" alt="Chocolate Cake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍰 Chocolate Cake</div>'">
+                    <div class="gallery-overlay">Chocolate Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/sugar-cookies.jpg" alt="Sugar Cookies" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍪 Sugar Cookies</div>'">
+                    <div class="gallery-overlay">Sugar Cookies</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/fresh-croissant.jpg" alt="Fresh Croissant" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥨 Fresh Croissant</div>'">
+                    <div class="gallery-overlay">Fresh Croissant</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/coffee-shop.jpg" alt="Coffee Shop Interior" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>☕ Coffee Shop</div>'">
+                    <div class="gallery-overlay">Coffee Shop Interior</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/chocolate-brownie.jpg" alt="Chocolate Brownie" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍫 Chocolate Brownie</div>'">
+                    <div class="gallery-overlay">Chocolate Brownie</div>
+                </div>
+
+                 <div class="gallery-item">
+                    <img src="images/vegan-treats.jpg" alt="Vegan Treats" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥧 Vegan Treats</div>'">
+                    <div class="gallery-overlay">Vegan Treats</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/cheese-cake.jpg" alt="Cheese Cakes" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍰 Cheese Cakes</div>'">
+                    <div class="gallery-overlay">Cheese Cakes</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/apple-cake.jpg" alt="Apple Cake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍰Apple Cake</div>'">
+                    <div class="gallery-overlay">Apple Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/doughnuts.jpg" alt="Doughnuts" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍩Doughnuts </div>'">
+                    <div class="gallery-overlay">Doughnuts</div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/pan-cake.jpg" alt="Pan Cake" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥧 Pan Cake</div>'">
+                    <div class="gallery-overlay">Pan Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/blackout-cake.jpg" alt="Blackout Cake " onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🍰 Blackout Cake</div>'">
+                    <div class="gallery-overlay">Blackout Cake</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/muffins.jpg" alt="Muffins" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥧 Muffins </div>'">
+                    <div class="gallery-overlay">Muffins</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="images/chocolate-eclair.jpg" alt="Chocolate Eclair" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'gallery-placeholder\'>🥖Chocolate Eclair </div>'">
+                    <div class="gallery-overlay">Chocolate Eclair</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: #666;">Can't find exactly what you're looking for? We create custom cakes for any occasion!</p>
+                <a href="#contact" class="cta-button" style="margin-top: 1rem;">View More Creations</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>About Sweet Delights</h2>
+            <p>Welcome to Sweet Delights, where <strong>passion meets perfection</strong> in every bite. For over 10 years, we've been creating extraordinary cakes and desserts that turn ordinary moments into unforgettable memories.</p>
+            
+            <p>Our master bakers combine <strong>traditional techniques</strong> with innovative designs to create cakes that are not just delicious, but true works of art. From intimate celebrations to grand events, we're here to make your sweetest dreams come true.</p>
+            
+            <p>Every cake is made with <strong>premium ingredients</strong>, lots of love, and attention to detail that makes us the preferred choice at Sweet Delights. It's not just about our unrivaled desserts.</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years of Excellence</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5000+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Cake Varieties</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to order your cake? We'd love to hear from you! Reach out through any of these channels.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h4>Visit Us</h4>
+                    <p>Sweet Delights Bakery<br>
+                    123 Baker Street, Suite 100<br>
+                    Hyderabad, Telangana, India</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h4>Call Us</h4>
+                    <p>+91 40 1234 5678<br>
+                    +91 9876 543210</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">🕒</div>
+                    <h4>Store Hours</h4>
+                    <p>Monday - Saturday: 8:00 AM - 9:00 PM<br>
+                    Sunday: 9:00 AM - 8:00 PM</p>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h4>Email Us</h4>
+                    <p>orders@sweetdelights.com<br>
+                    info@sweetdelights.com</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <h3>Ready to Create Something Sweet?</h3>
+                <p>Whether you're planning a birthday party, wedding, or just want to treat yourself, we're here to make your sweet dreams come true!</p>
+                <a href="tel:+914012345678" class="cta-button">📞 Call Now to Order</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background change on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'white';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Gallery item hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.background = 'linear-gradient(45deg, #ffa500, #ff6b6b)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.background = 'linear-gradient(45deg, #ff6b6b, #ffa500)';
+            });
+        });
+
+        // CTA button click animations
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    left: ${x}px;
+                    top: ${y}px;
+                    transform: scale(0);
+                    animation: ripple 0.6s ease-out;
+                    pointer-events: none;
+                `;
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Loading animation for service cards
+        setTimeout(() => {
+            document.querySelectorAll('.service-card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        }, 500);
+
+        // Initialize service cards as hidden
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+    </script>
+</body>
+</html>
